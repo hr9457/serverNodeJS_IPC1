@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
-// creacion de la app
+// creacion de la app o mi API
 const app = express();
 
 
@@ -20,16 +20,32 @@ app.use(express.json()); // para poder manjar los json
 
 
 // informacion de forma general
-var data = [{
-    Titulo: 'Saludo',
-    Mensaje:'Bienvenidos a la pagina principal',
-    Tipo:'string' 
-},
-{
-    Titulo: 'Saludo2',
-    Mensaje:'Bienvenida2',
-    Tipo:'string'
-}
+var data = [
+    {
+        Titulo: 'Saludo',
+        Mensaje:'Bienvenidos a la pagina principal',
+        Tipo:'string' 
+    },
+    {
+        Titulo: 'Saludo2',
+        Mensaje:'Bienvenida2',
+        Tipo:'string'
+    }
+];
+
+
+var pokedex = [
+    {
+        "Nombre":"bulbasur",
+        "Tipo":"hierba",
+        "Ataque":"Latigo Cepa",
+        "Imagen":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/132.png"
+    },
+    {
+        "Nombre":"charmader",
+        "Tipo":"fuego",
+        "Ataque":"lanzallamas"
+    }
 ];
 
 
@@ -40,6 +56,23 @@ var data = [{
 //routes
 app.get('/',(req,res)=>{
     res.send('Hola mundo desde mi primer Backend con NodeJS');
+})
+
+
+//ruta para mi pokedes
+app.get('/pokedex',(req,res)=>{
+    res.send(pokedex);
+});
+
+
+
+app.get('/ejemplo',(req,res)=>{
+    var ejemplo = {
+        "Usuario":"Hector",
+        "Curso":"IPC1B",
+        "Horaio":"jueves"
+    }
+    res.send(ejemplo);
 })
 
 
@@ -55,6 +88,7 @@ app.get('/usuario',(req,res)=>{
 })
 
 
+// post para que el usuario nos envie informacion
 app.post('/envio',(req,res)=>{
     var dato1 = req.body.dato1;
     var dato2 = req.body.dato2;
@@ -66,7 +100,7 @@ app.post('/envio',(req,res)=>{
     res.send(respuesta);
 })
 
-
+// router mas avanzado
 app.use(require('./routes/bienvenida.js'));
 
 
@@ -84,6 +118,7 @@ app.listen(app.get('port'),()=>{
 // correr el servidor busco la ruta del archivo index
 // node src/index.js
 
+// COMANDO PARA CORRER LA API DE EJEMPLO DEL LABORATORIO
 // con nodemon cambia a npm run dev
 
 // comando utilizados
