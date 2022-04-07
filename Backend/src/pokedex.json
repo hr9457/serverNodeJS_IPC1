@@ -1,0 +1,13 @@
+[
+    {
+        "Nombre":"bulbasur",
+        "Tipo":"hierba",
+        "Ataque":"Latigo Cepa",
+        "Imagen":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/132.png"
+    },
+    {
+        "Nombre":"charmader",
+        "Tipo":"fuego",
+        "Ataque":"lanzallamas"
+    }
+]

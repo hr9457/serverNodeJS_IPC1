@@ -15,6 +15,7 @@ app.set('port',4000);
 // usando morgan para middlewares
 app.use(morgan('dev')); // para poder visualizar los estados de nuestro servidor
 app.use(express.json()); // para poder manjar los json
+app.use(cors())
 
 
 
@@ -34,19 +35,6 @@ var data = [
 ];
 
 
-var pokedex = [
-    {
-        "Nombre":"bulbasur",
-        "Tipo":"hierba",
-        "Ataque":"Latigo Cepa",
-        "Imagen":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/132.png"
-    },
-    {
-        "Nombre":"charmader",
-        "Tipo":"fuego",
-        "Ataque":"lanzallamas"
-    }
-];
 
 
 
@@ -61,7 +49,19 @@ app.get('/',(req,res)=>{
 
 //ruta para mi pokedes
 app.get('/pokedex',(req,res)=>{
+    let pokedex = require('./pokedex.json');
     res.send(pokedex);
+});
+
+
+app.get('/retornoPokemon',(req,res)=>{
+    let pokedex = require('./pokedex.json');
+    var nombre = 'bulbasu'
+    if (pokedex[0].Nombre == nombre){
+        res.send(pokedex);
+    } else {
+        res.send({Mensaje:"Error"});
+    }
 });
 
 
@@ -90,6 +90,7 @@ app.get('/usuario',(req,res)=>{
 
 // post para que el usuario nos envie informacion
 app.post('/envio',(req,res)=>{
+    console.log(req.body);
     var dato1 = req.body.dato1;
     var dato2 = req.body.dato2;
     var suma = dato1 + dato2;
