@@ -29,7 +29,11 @@ function getPokemons(){
 
 // otra forma de hacer un fetch con metodo post
 async function suma(){
+    // DOOM
     let url = 'http://localhost:4000/envio';
+    // obtener los datos que estan en frontend
+    var usuario;
+    var contrasenia;
     // creando un json
     var data = {
         dato1: 2,
@@ -47,4 +51,12 @@ async function suma(){
         return data
     })
     console.log(respuestas)
+    
+    //obteniendo id para mostrar mi respuesta
+    localStorage.setItem('suma',respuestas.resultado);
+
+
+    let contenedor = document.getElementById('contenedor');
+    contenedor.innerHTML = `<h1>SUMA ES IGUAL A:  ${respuestas.resultado} </h1>`;
+    // contenedor
 }
